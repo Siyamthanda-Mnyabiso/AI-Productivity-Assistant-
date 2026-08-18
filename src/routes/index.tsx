@@ -148,7 +148,7 @@ function Dashboard() {
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3 lg:items-start">
           {/* Recent activity */}
-          <section className="rounded-2xl border border-border bg-card p-5 shadow-soft lg:col-span-2">
+          <section className="min-w-0 rounded-2xl border border-border bg-card p-5 shadow-soft lg:col-span-2">
             <div className="flex flex-wrap items-end justify-between gap-2">
               <div>
                 <h2 className="text-base font-semibold">Recent Activity</h2>
@@ -184,7 +184,7 @@ function Dashboard() {
             </ul>
           </section>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex min-w-0 flex-col gap-4">
             {/* Quick actions */}
             <section className="rounded-2xl border border-border bg-card p-5 shadow-soft">
               <h2 className="text-base font-semibold">Quick Actions</h2>
