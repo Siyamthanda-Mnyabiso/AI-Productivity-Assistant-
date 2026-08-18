@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailRouteImport } from './routes/email'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TasksRouteImport } from './routes/tasks'
@@ -30,6 +31,11 @@ const EmailRoute = EmailRouteImport.update({
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotesRoute = NotesRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
+  '/integrations': typeof IntegrationsRoute
   '/notes': typeof NotesRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
+  '/integrations': typeof IntegrationsRoute
   '/notes': typeof NotesRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
+  '/integrations': typeof IntegrationsRoute
   '/notes': typeof NotesRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/email'
     | '/history'
+    | '/integrations'
     | '/notes'
     | '/settings'
     | '/tasks'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/email'
     | '/history'
+    | '/integrations'
     | '/notes'
     | '/settings'
     | '/tasks'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/email'
     | '/history'
+    | '/integrations'
     | '/notes'
     | '/settings'
     | '/tasks'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EmailRoute: typeof EmailRoute
   HistoryRoute: typeof HistoryRoute
+  IntegrationsRoute: typeof IntegrationsRoute
   NotesRoute: typeof NotesRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notes': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EmailRoute: EmailRoute,
   HistoryRoute: HistoryRoute,
+  IntegrationsRoute: IntegrationsRoute,
   NotesRoute: NotesRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
