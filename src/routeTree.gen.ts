@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailRouteImport } from './routes/email'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as NotesRouteImport } from './routes/notes'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as TemplatesRouteImport } from './routes/templates'
 
@@ -36,6 +37,11 @@ const NotesRoute = NotesRouteImport.update({
   path: '/notes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TasksRoute = TasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/notes': typeof NotesRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/templates': typeof TemplatesRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/notes': typeof NotesRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/templates': typeof TemplatesRoute
 }
@@ -69,20 +77,36 @@ export interface FileRoutesById {
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/notes': typeof NotesRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/templates': typeof TemplatesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/email' | '/history' | '/notes' | '/tasks' | '/templates'
+  fullPaths:
+    | '/'
+    | '/email'
+    | '/history'
+    | '/notes'
+    | '/settings'
+    | '/tasks'
+    | '/templates'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/email' | '/history' | '/notes' | '/tasks' | '/templates'
+  to:
+    | '/'
+    | '/email'
+    | '/history'
+    | '/notes'
+    | '/settings'
+    | '/tasks'
+    | '/templates'
   id:
     | '__root__'
     | '/'
     | '/email'
     | '/history'
     | '/notes'
+    | '/settings'
     | '/tasks'
     | '/templates'
   fileRoutesById: FileRoutesById
@@ -92,6 +116,7 @@ export interface RootRouteChildren {
   EmailRoute: typeof EmailRoute
   HistoryRoute: typeof HistoryRoute
   NotesRoute: typeof NotesRoute
+  SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   TemplatesRoute: typeof TemplatesRoute
 }
@@ -126,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
@@ -148,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailRoute: EmailRoute,
   HistoryRoute: HistoryRoute,
   NotesRoute: NotesRoute,
+  SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   TemplatesRoute: TemplatesRoute,
 }
