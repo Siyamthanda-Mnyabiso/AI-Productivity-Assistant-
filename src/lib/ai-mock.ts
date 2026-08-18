@@ -86,9 +86,9 @@ export function generateEmail({ purpose, recipient, context, tone, length }: Ema
   const hint = ctx ? ctx.split(/[.,\n]/)[0]!.trim().slice(0, 42) : "";
   const subject = `${subjectBase[purpose] ?? "Quick note"}${hint ? ` — ${hint}` : ""}`;
 
-  const paragraphs = [pick(openers[tone] ?? openers.Friendly!), (bodies[purpose] ?? bodies["Follow-up"]!)(ctxSentence)];
+  const paragraphs = [pick(openers[tone] ?? openers['Friendly']!), (bodies[purpose] ?? bodies['Follow-up']!)(ctxSentence)];
 
-  if (length === "Medium" || length === "Detailed") paragraphs.push(pick(extra[tone] ?? extra.Friendly!));
+  if (length === "Medium" || length === "Detailed") paragraphs.push(pick(extra[tone] ?? extra['Friendly']!));
   if (length === "Detailed") {
     paragraphs.push(
       `To summarise the next steps: I'll circulate a short recap, we'll confirm owners for each item, and we'll review progress at the end of the week. If you'd prefer a different cadence, just say the word and I'll rework the plan around what suits you best.`,
