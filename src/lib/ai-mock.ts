@@ -24,8 +24,14 @@ export function generateEmail({ purpose, recipient, context, tone, length }: Ema
   const ctx = context.trim();
   const ctxSentence = ctx ? (ctx.endsWith(".") ? ctx : `${ctx}.`) : "";
 
-  const greeting =
-    tone === "Formal" ? `Dear ${capital(name)},` : tone === "Persuasive" ? `Hi ${capital(first)},` : `Hey ${capital(first)},`;
+  const named = recipient.trim().length > 0;
+  const greeting = !named
+    ? "Hi there,"
+    : tone === "Formal"
+      ? `Dear ${capital(name)},`
+      : tone === "Persuasive"
+        ? `Hi ${capital(first)},`
+        : `Hey ${capital(first)},`;
 
   const openers: Record<string, string[]> = {
     Formal: [

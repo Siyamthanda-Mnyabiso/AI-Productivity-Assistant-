@@ -146,7 +146,7 @@ function Dashboard() {
           })}
         </section>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 lg:grid-cols-3 lg:items-start">
           {/* Recent activity */}
           <section className="rounded-2xl border border-border bg-card p-5 shadow-soft lg:col-span-2">
             <div className="flex flex-wrap items-end justify-between gap-2">
