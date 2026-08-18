@@ -58,7 +58,7 @@ export function Logo({ size = 36 }: { size?: number }) {
   );
 }
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const item = (to: string, label: string, Icon: typeof Mail) => {
     const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
@@ -136,7 +136,7 @@ function ProfileRow() {
   );
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col gap-6 p-4">
       <Link to="/" onClick={onNavigate} className="flex items-center gap-3 px-2 pt-1">
